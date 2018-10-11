@@ -1,7 +1,7 @@
 package br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences;
 
 /**
- * Sequence analysis of obliques in SOUTH EAST direction (&#8600;)
+ * Sequence analysis of obliques in <strong>backslash (&#8600; or &#8598;)</strong> direction
  *
  * @author carvo
  */

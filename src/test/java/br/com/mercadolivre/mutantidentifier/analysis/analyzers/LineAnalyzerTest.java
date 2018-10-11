@@ -1,6 +1,5 @@
 package br.com.mercadolivre.mutantidentifier.analysis.analyzers;
 
-import br.com.mercadolivre.mutantidentifier.analysis.analyzers.LineAnalyzer;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

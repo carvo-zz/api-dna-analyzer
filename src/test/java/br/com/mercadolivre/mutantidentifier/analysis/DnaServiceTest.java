@@ -1,11 +1,10 @@
 package br.com.mercadolivre.mutantidentifier.analysis;
 
-import br.com.mercadolivre.mutantidentifier.analysis.DnaService;
 import br.com.mercadolivre.mutantidentifier.analysis.analyzers.LineAnalyzer;
-import br.com.mercadolivre.mutantidentifier.analysis.factories.AnalyzerFactory;
 import br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences.BackslashDirectionAnalyzer;
 import br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences.ColumnAnalyzer;
 import br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences.SlashDirectionAnalyzer;
+import br.com.mercadolivre.mutantidentifier.analysis.factories.AnalyzerFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

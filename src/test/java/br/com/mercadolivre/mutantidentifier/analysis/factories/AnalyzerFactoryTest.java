@@ -6,7 +6,7 @@ import br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences.ColumnA
 import br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences.SlashDirectionAnalyzer;
 import org.junit.Test;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class AnalyzerFactoryTest {
 

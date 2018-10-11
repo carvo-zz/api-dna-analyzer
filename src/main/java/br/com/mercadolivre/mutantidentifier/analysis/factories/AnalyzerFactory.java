@@ -1,8 +1,8 @@
 package br.com.mercadolivre.mutantidentifier.analysis.factories;
 
 import br.com.mercadolivre.mutantidentifier.analysis.analyzers.LineAnalyzer;
-import br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences.ColumnAnalyzer;
 import br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences.BackslashDirectionAnalyzer;
+import br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences.ColumnAnalyzer;
 import br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences.SlashDirectionAnalyzer;
 import org.springframework.stereotype.Component;
 
