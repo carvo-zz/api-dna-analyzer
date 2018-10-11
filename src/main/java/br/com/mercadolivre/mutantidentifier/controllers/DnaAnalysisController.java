@@ -26,17 +26,13 @@ public class DnaAnalysisController {
 
     @ApiOperation(value = "${DnaAnalysisController.postDna.desc}", notes = "${DnaAnalysisController.postDna.notes}")
     @ApiResponses({
-            @ApiResponse(code = 200, response = String.class, message = "OK" +
-                    "<br>Is a mutant"
-            ),
+            @ApiResponse(code = 200, message = "OK<br>Is a mutant"),
             @ApiResponse(code = 400, response = String.class, message = "Bad Request" +
                     "<br>Possible causes: " +
                     "<pre>  &bull; " + DnaStructureValidator.MSG_NULL_OR_EMPTY +
                     "<br>  &bull; " + DnaStructureValidator.MSG_NOT_SQUARE + "</pre>"
             ),
-            @ApiResponse(code = 403, response = String.class, message = "Forbidden" +
-                    "<br>Is not a mutant"
-            ),
+            @ApiResponse(code = 403, message = "Forbidden<br>Is not a mutant"),
     })
     @PostMapping(UrlMapping.POST_DNA)
     public ResponseEntity<String> postDna(@RequestBody DnaAnalysisRequest request) {
