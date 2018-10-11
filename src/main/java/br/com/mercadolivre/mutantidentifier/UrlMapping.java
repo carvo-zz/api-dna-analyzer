@@ -1,8 +1,8 @@
 package br.com.mercadolivre.mutantidentifier;
 
 public final class UrlMapping {
-    private static final String BASE = "/wormhole-travel/api/v1";
+    private static final String BASE = "/dna-analysis/api";
 
-    public static final String POST_DNA = BASE + "/dna";
+    public static final String POST_DNA = BASE + "/mutant";
 
 }
