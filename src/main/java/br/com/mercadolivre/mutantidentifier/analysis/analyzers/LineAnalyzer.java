@@ -1,4 +1,4 @@
-package br.com.mercadolivre.mutantidentifier.analyzers;
+package br.com.mercadolivre.mutantidentifier.analysis.analyzers;
 
 public class LineAnalyzer implements MutantSequenceCountable {
 
@@ -10,7 +10,7 @@ public class LineAnalyzer implements MutantSequenceCountable {
         this.countMutantSequence = 0;
     }
 
-    public void processLine(final String line) {
+    public void computeLine(final String line) {
         char lastChar = '\u0000';
         int countSequence = 0;
 

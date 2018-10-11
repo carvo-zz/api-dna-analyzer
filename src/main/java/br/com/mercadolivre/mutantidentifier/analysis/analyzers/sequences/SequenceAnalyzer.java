@@ -1,6 +1,6 @@
-package br.com.mercadolivre.mutantidentifier.analyzers.sequences;
+package br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences;
 
-import br.com.mercadolivre.mutantidentifier.analyzers.MutantSequenceCountable;
+import br.com.mercadolivre.mutantidentifier.analysis.analyzers.MutantSequenceCountable;
 
 public abstract class SequenceAnalyzer implements MutantSequenceCountable {
 

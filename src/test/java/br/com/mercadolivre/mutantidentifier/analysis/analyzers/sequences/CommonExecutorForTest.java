@@ -1,4 +1,4 @@
-package br.com.mercadolivre.mutantidentifier.analyzers.sequences;
+package br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences;
 
 public final class CommonExecutorForTest {
 

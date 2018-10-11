@@ -1,5 +1,6 @@
-package br.com.mercadolivre.mutantidentifier.analyzers;
+package br.com.mercadolivre.mutantidentifier.analysis.analyzers;
 
+import br.com.mercadolivre.mutantidentifier.analysis.analyzers.LineAnalyzer;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,7 +10,7 @@ public class LineAnalyzerTest {
     @Test
     public void shouldFindNoSequence() {
         final LineAnalyzer lineAnalyzer = new LineAnalyzer(4);
-        lineAnalyzer.processLine("ATCGATCGGGTTTAAACTATGCTAGTCAGTTGCATGCA");
+        lineAnalyzer.computeLine("ATCGATCGGGTTTAAACTATGCTAGTCAGTTGCATGCA");
 
         assertEquals(0, lineAnalyzer.getCountMutantSequence());
     }
@@ -17,7 +18,7 @@ public class LineAnalyzerTest {
     @Test
     public void shouldFindFourSequences() {
         final LineAnalyzer lineAnalyzer = new LineAnalyzer(4);
-        lineAnalyzer.processLine("AAAAATGCCCCATTTTTTTT");
+        lineAnalyzer.computeLine("AAAAATGCCCCATTTTTTTT");
 
         assertEquals(4, lineAnalyzer.getCountMutantSequence());
     }
@@ -34,9 +35,9 @@ public class LineAnalyzerTest {
         long time = System.currentTimeMillis();
 
         final LineAnalyzer lineAnalyzer = new LineAnalyzer(4);
-        lineAnalyzer.processLine(sbLine.toString());
+        lineAnalyzer.computeLine(sbLine.toString());
 
-        System.out.println("processLine: " + (System.currentTimeMillis() - time));
+        System.out.println("computeLine: " + (System.currentTimeMillis() - time));
 
         assertEquals(2, lineAnalyzer.getCountMutantSequence());
     }

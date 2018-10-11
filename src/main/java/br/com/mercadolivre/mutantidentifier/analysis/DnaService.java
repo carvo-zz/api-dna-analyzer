@@ -1,8 +1,10 @@
-package br.com.mercadolivre.mutantidentifier.analyzers;
+package br.com.mercadolivre.mutantidentifier.analysis;
 
-import br.com.mercadolivre.mutantidentifier.analyzers.sequences.ColumnAnalyzer;
-import br.com.mercadolivre.mutantidentifier.analyzers.sequences.BackslashDirectionAnalyzer;
-import br.com.mercadolivre.mutantidentifier.analyzers.sequences.SlashDirectionAnalyzer;
+import br.com.mercadolivre.mutantidentifier.analysis.factories.AnalyzerFactory;
+import br.com.mercadolivre.mutantidentifier.analysis.analyzers.LineAnalyzer;
+import br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences.ColumnAnalyzer;
+import br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences.BackslashDirectionAnalyzer;
+import br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences.SlashDirectionAnalyzer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +37,7 @@ public class DnaService {
         while (!isMutant && horizIdx < dim) {
             final String line = dna[horizIdx];
 
-            lineAnalyzer.processLine(line);
+            lineAnalyzer.computeLine(line);
             if (foundMutant(lineAnalyzer, colAnalyzer, slashAnalyzer, backslashAnalyzer)) {
                 isMutant = Boolean.TRUE;
                 break;
@@ -66,7 +68,7 @@ public class DnaService {
         }
 
         LOG.info("Mutant sequences found: " +
-                        "\n\t {} lines, \n\t {} columns, \n\t {} slash dir, \n\t {} backslash dir",
+                        "\n\t {} in lines, \n\t {} in columns, \n\t {} in slash directs, \n\t {} in backslash directs",
                 lineAnalyzer.getCountMutantSequence(), colAnalyzer.getCountMutantSequence(),
                 slashAnalyzer.getCountMutantSequence(), backslashAnalyzer.getCountMutantSequence());
 
@@ -77,8 +79,12 @@ public class DnaService {
 
     private boolean foundMutant(LineAnalyzer lineAnalyzer, ColumnAnalyzer colAnalyzer,
                                 SlashDirectionAnalyzer slashAnalyzer, BackslashDirectionAnalyzer backslashAnalyzer) {
-        return lineAnalyzer.getCountMutantSequence() +
-                colAnalyzer.getCountMutantSequence() +
+        final int lineCount = lineAnalyzer.getCountMutantSequence();
+        final int columnCount = colAnalyzer.getCountMutantSequence();
+
+        LOG.info("Line count: {} | Column count: {}", lineCount, columnCount);
+        return lineCount +
+                columnCount +
                 slashAnalyzer.getCountMutantSequence() +
                 backslashAnalyzer.getCountMutantSequence() > 1;
     }

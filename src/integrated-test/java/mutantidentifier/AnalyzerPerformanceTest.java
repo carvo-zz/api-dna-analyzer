@@ -1,6 +1,6 @@
 package mutantidentifier;
 
-import br.com.mercadolivre.mutantidentifier.analyzers.DnaService;
+import br.com.mercadolivre.mutantidentifier.analysis.DnaService;
 import org.junit.Test;
 
 import java.util.Random;
