@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class SoutheastSequenceAnalyzerTest {
+public class BackslashDirectionAnalyzerTest {
 
     @Test
     public void shouldFindOneSequence() {
@@ -19,7 +19,7 @@ public class SoutheastSequenceAnalyzerTest {
                 "AGAATCTT"
         };
 
-        final SoutheastSequenceAnalyzer analyzer = new SoutheastSequenceAnalyzer(4, dna.length);
+        final BackslashDirectionAnalyzer analyzer = new BackslashDirectionAnalyzer(4, dna.length);
         CommonExecutorForTest.commonExecution(dna, analyzer);
 
         assertEquals(1, analyzer.getCountMutantSequence());
@@ -38,7 +38,7 @@ public class SoutheastSequenceAnalyzerTest {
                 "AGAATCTT"
         };
 
-        final SoutheastSequenceAnalyzer analyzer = new SoutheastSequenceAnalyzer(4, dna.length);
+        final BackslashDirectionAnalyzer analyzer = new BackslashDirectionAnalyzer(4, dna.length);
         CommonExecutorForTest.commonExecution(dna, analyzer);
 
         assertEquals(2, analyzer.getCountMutantSequence());

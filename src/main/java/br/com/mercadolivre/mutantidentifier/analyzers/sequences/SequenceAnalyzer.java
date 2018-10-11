@@ -19,7 +19,7 @@ public abstract class SequenceAnalyzer implements MutantSequenceCountable {
 
     protected abstract int resolveIndex(final int lineIdx, final int columnIdx);
 
-    public void processGene(final int lineIdx, final int columnIdx, final char gene) {
+    public void computeGene(final int lineIdx, final int columnIdx, final char gene) {
         final int idx = resolveIndex(lineIdx, columnIdx);
 
         if (isValidGene(gene) && gene == lastGene[idx]) {

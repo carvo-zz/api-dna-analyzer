@@ -1,9 +1,7 @@
 package mutantidentifier;
 
-import br.com.mercadolivre.mutantidentifier.analyzers.DnaAnalyzer;
+import br.com.mercadolivre.mutantidentifier.analyzers.DnaService;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 import java.util.Random;
 import java.util.stream.IntStream;
@@ -41,7 +39,7 @@ public class AnalyzerPerformanceTest {
 
         System.out.println("Terminou em " + (System.currentTimeMillis() - currentMillis)/1000 + "s");
 
-        final boolean isMutant = new DnaAnalyzer().isMutant(dna);
+        final boolean isMutant = new DnaService().isMutant(dna);
         System.out.println(isMutant);
     }
 

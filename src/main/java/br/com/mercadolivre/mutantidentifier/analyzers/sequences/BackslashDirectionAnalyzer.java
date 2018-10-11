@@ -5,11 +5,11 @@ package br.com.mercadolivre.mutantidentifier.analyzers.sequences;
  *
  * @author carvo
  */
-public class SoutheastSequenceAnalyzer extends SequenceAnalyzer {
+public class BackslashDirectionAnalyzer extends SequenceAnalyzer {
 
     private final int matrixDim;
 
-    public SoutheastSequenceAnalyzer(int mutantFactor, int matrixDim) {
+    public BackslashDirectionAnalyzer(int mutantFactor, int matrixDim) {
         super(mutantFactor, matrixDim * 2);
         this.matrixDim = matrixDim;
     }

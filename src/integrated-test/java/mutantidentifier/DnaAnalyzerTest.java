@@ -1,6 +1,6 @@
 package mutantidentifier;
 
-import br.com.mercadolivre.mutantidentifier.analyzers.DnaAnalyzer;
+import br.com.mercadolivre.mutantidentifier.analyzers.DnaService;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -20,7 +20,7 @@ public class DnaAnalyzerTest {
                 "AGAAGGCG"
         };
 
-        final boolean b = new DnaAnalyzer().isMutant(dna);
+        final boolean b = new DnaService().isMutant(dna);
 
         assertTrue(b);
     }
@@ -38,7 +38,7 @@ public class DnaAnalyzerTest {
                 "GGAATTTT"
         };
 
-        final boolean b = new DnaAnalyzer().isMutant(dna);
+        final boolean b = new DnaService().isMutant(dna);
 
         assertTrue(b);
     }
@@ -56,7 +56,7 @@ public class DnaAnalyzerTest {
                 "TTTTTTTT"
         };
 
-        final boolean b = new DnaAnalyzer().isMutant(dna);
+        final boolean b = new DnaService().isMutant(dna);
 
         assertTrue(b);
     }
@@ -78,7 +78,7 @@ public class DnaAnalyzerTest {
                 "GGAATGTT"
         };
 
-        final boolean b = new DnaAnalyzer().isMutant(dna);
+        final boolean b = new DnaService().isMutant(dna);
 
         assertTrue(b);
     }
@@ -100,7 +100,7 @@ public class DnaAnalyzerTest {
                 "CGAATCTT"
         };
 
-        final boolean b = new DnaAnalyzer().isMutant(dna);
+        final boolean b = new DnaService().isMutant(dna);
 
         assertTrue(b);
     }
@@ -118,7 +118,7 @@ public class DnaAnalyzerTest {
                 "CGAATCTC"
         };
 
-        final boolean b = new DnaAnalyzer().isMutant(dna);
+        final boolean b = new DnaService().isMutant(dna);
 
         assertTrue(b);
     }
@@ -136,7 +136,7 @@ public class DnaAnalyzerTest {
                 "AGAATCTT"
         };
 
-        final boolean b = new DnaAnalyzer().isMutant(dna);
+        final boolean b = new DnaService().isMutant(dna);
 
         assertTrue(b);
     }

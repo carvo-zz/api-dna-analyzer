@@ -5,9 +5,9 @@ package br.com.mercadolivre.mutantidentifier.analyzers.sequences;
  *
  * @author carvo
  */
-public class SouthwestSequenceAnalyzer extends SequenceAnalyzer {
+public class SlashDirectionAnalyzer extends SequenceAnalyzer {
 
-    public SouthwestSequenceAnalyzer(int mutantFactor, int matrixDim) {
+    public SlashDirectionAnalyzer(int mutantFactor, int matrixDim) {
         super(mutantFactor, matrixDim * 2);
     }
 
