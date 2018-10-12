@@ -34,7 +34,7 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfo(
-                "DNA analysis - API",
+                "DNA analyzer API",
                 appinfoDesc,
                 "1.0",
                 "Copyrights to MercadoLivre",

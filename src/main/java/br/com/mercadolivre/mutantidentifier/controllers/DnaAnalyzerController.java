@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
-public class DnaAnalysisController {
+public class DnaAnalyzerController {
 
     @Autowired
     private DnaService dnaService;
@@ -24,7 +24,7 @@ public class DnaAnalysisController {
     @Autowired
     private DnaStructureValidator structureValidator;
 
-    @ApiOperation(value = "${DnaAnalysisController.postDna.desc}", notes = "${DnaAnalysisController.postDna.notes}")
+    @ApiOperation(value = "${DnaAnalyzerController.postDna.desc}", notes = "${DnaAnalyzerController.postDna.notes}")
     @ApiResponses({
             @ApiResponse(code = 200, message = "OK<br>Is a mutant"),
             @ApiResponse(code = 400, response = String.class, message = "Bad Request" +

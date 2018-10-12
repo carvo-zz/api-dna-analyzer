@@ -5,18 +5,21 @@
 
 ## Requirements
 * Java 8
-* Maven 3.x (properly configured)
-* Port **8088** free (if already in use
-        edit the [application.properties](src/main/resources/application.properties))
 
 ## Running
 
 ### Local
-In %PROJECT_ROOT% path run ```mvn spring-boot:run```
+#### In default port (8080)
+In %PROJECT_ROOT% path run ```mvnw appengine:devserver```
+
+* For custom port use ```mvnw appengine:devserver -Dappengine.port=XXXX```
+* To avoid tests runing use ```mvnw appengine:devserver -DskipTests```
 
 ## API doc
-
 ### Local
 Access
-[http://localhost:8088/swagger-ui.html](http://localhost:8088/swagger-ui.html)
-after running.
+[http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+after running. **Important: if you change the port use the one you choose.**
+
+### GoogleCloud
+Access

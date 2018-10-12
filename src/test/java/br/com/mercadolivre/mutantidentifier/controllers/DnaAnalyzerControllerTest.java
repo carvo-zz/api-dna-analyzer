@@ -23,8 +23,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(DnaAnalysisController.class)
-public class DnaAnalysisControllerTest {
+@WebMvcTest(DnaAnalyzerController.class)
+public class DnaAnalyzerControllerTest {
 
     @Autowired
     private MockMvc mockMvc;

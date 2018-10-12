@@ -19,7 +19,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = App.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class DnaAnalysisControllerIntegratedTest {
+public class DnaAnalyzerControllerIntegratedTest {
 
     @LocalServerPort
     private int port;
@@ -27,7 +27,7 @@ public class DnaAnalysisControllerIntegratedTest {
     private final TestRestTemplate restTemplate;
     private final HttpHeaders headers;
 
-    public DnaAnalysisControllerIntegratedTest() {
+    public DnaAnalyzerControllerIntegratedTest() {
         restTemplate = new TestRestTemplate();
         headers = new HttpHeaders();
         headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
