@@ -82,7 +82,6 @@ public class DnaService {
         final int lineCount = lineAnalyzer.getCountMutantSequence();
         final int columnCount = colAnalyzer.getCountMutantSequence();
 
-        LOG.info("Line count: {} | Column count: {}", lineCount, columnCount);
         return lineCount +
                 columnCount +
                 slashAnalyzer.getCountMutantSequence() +
