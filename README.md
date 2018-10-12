@@ -13,7 +13,7 @@
 In %PROJECT_ROOT% path run ```mvnw appengine:devserver```
 
 * For custom port use ```mvnw appengine:devserver -Dappengine.port=XXXX```
-* To avoid tests use ```mvnw appengine:devserver -DskipTests```
+* To avoid tests execution use ```mvnw appengine:devserver -DskipTests```
 
 ## API doc
 ### Local
