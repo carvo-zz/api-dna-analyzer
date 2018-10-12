@@ -9,10 +9,10 @@
 * Port **8088** free (if already in use
         edit the [application.properties](src/main/resources/application.properties))
 
-## To run
+## Running
 
 ### Local
-In PROJECT_ROOT path ```mvn spring-boot:run```
+In %PROJECT_ROOT% path run ```mvn spring-boot:run```
 
 ## API doc
 
