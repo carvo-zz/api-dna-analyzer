@@ -79,7 +79,6 @@ public class DnaService {
 
     private boolean foundMutant(LineAnalyzer lineAnalyzer, ColumnAnalyzer colAnalyzer,
                                 SlashDirectionAnalyzer slashAnalyzer, BackslashDirectionAnalyzer backslashAnalyzer) {
-        LOG.info("Chamou found: {}", ++countFound);
         return lineAnalyzer.getCountMutantSequence() +
                 colAnalyzer.getCountMutantSequence() +
                 slashAnalyzer.getCountMutantSequence() +

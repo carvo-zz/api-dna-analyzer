@@ -2,10 +2,19 @@ package br.com.mercadolivre.mutantidentifier.integratedtest.analysis;
 
 import br.com.mercadolivre.mutantidentifier.analysis.DnaService;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.*;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class DnaServiceIntegratedTest {
+
+    @Autowired
+    private DnaService dnaService;
 
     @Test
     public void isMutantOnlyInVertical() {
@@ -20,7 +29,7 @@ public class DnaServiceIntegratedTest {
                 "AGAAGGCG"
         };
 
-        final boolean b = new DnaService().isMutant(dna);
+        final boolean b = dnaService.isMutant(dna);
 
         assertTrue(b);
     }
@@ -38,7 +47,7 @@ public class DnaServiceIntegratedTest {
                 "GGAATTTT"
         };
 
-        final boolean b = new DnaService().isMutant(dna);
+        final boolean b = dnaService.isMutant(dna);
 
         assertTrue(b);
     }
@@ -56,7 +65,7 @@ public class DnaServiceIntegratedTest {
                 "TTTTTTTT"
         };
 
-        final boolean b = new DnaService().isMutant(dna);
+        final boolean b = dnaService.isMutant(dna);
 
         assertTrue(b);
     }
@@ -78,7 +87,7 @@ public class DnaServiceIntegratedTest {
                 "GGAATGTT"
         };
 
-        final boolean b = new DnaService().isMutant(dna);
+        final boolean b = dnaService.isMutant(dna);
 
         assertTrue(b);
     }
@@ -100,7 +109,7 @@ public class DnaServiceIntegratedTest {
                 "CGAATCTT"
         };
 
-        final boolean b = new DnaService().isMutant(dna);
+        final boolean b = dnaService.isMutant(dna);
 
         assertTrue(b);
     }
@@ -118,7 +127,7 @@ public class DnaServiceIntegratedTest {
                 "CGAATCTC"
         };
 
-        final boolean b = new DnaService().isMutant(dna);
+        final boolean b = dnaService.isMutant(dna);
 
         assertTrue(b);
     }
@@ -136,7 +145,7 @@ public class DnaServiceIntegratedTest {
                 "AGAATCTT"
         };
 
-        final boolean b = new DnaService().isMutant(dna);
+        final boolean b = dnaService.isMutant(dna);
 
         assertTrue(b);
     }

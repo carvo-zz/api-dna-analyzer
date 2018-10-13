@@ -2,17 +2,28 @@ package br.com.mercadolivre.mutantidentifier.integratedtest.analysis;
 
 import br.com.mercadolivre.mutantidentifier.analysis.DnaService;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Random;
 import java.util.stream.IntStream;
 
+import static org.junit.Assert.assertTrue;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class DnaServicePerformanceTest {
 
     private final Random random = new Random();
     private final String wrongGenes = "BDEFHIJKL";
 
+    @Autowired
+    private DnaService dnaService;
+
     @Test
-    public void isMutantInOblique() {
+    public void isMutant() {
         final int size = 40000;
         final String[] dna = new String[size];
 
@@ -39,8 +50,9 @@ public class DnaServicePerformanceTest {
 
         System.out.println("Terminou em " + (System.currentTimeMillis() - currentMillis)/1000 + "s");
 
-        final boolean isMutant = new DnaService().isMutant(dna);
-        System.out.println(isMutant);
+        final boolean isMutant = dnaService.isMutant(dna);
+
+        assertTrue(isMutant);
     }
 
     private String generateFromWrong() {
