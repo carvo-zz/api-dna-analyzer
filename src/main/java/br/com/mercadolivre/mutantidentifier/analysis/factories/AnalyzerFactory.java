@@ -1,16 +1,16 @@
 package br.com.mercadolivre.mutantidentifier.analysis.factories;
 
-import br.com.mercadolivre.mutantidentifier.analysis.analyzers.LineAnalyzer;
-import br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences.BackslashDirectionAnalyzer;
-import br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences.ColumnAnalyzer;
-import br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences.SlashDirectionAnalyzer;
+import br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix.BackslashDirectionAnalyzer;
+import br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix.ColumnAnalyzer;
+import br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix.LineAnalyzer;
+import br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix.SlashDirectionAnalyzer;
 import org.springframework.stereotype.Component;
 
 @Component
 public class AnalyzerFactory {
 
-    public LineAnalyzer createLineAnalyzer(final int mutantFactor) {
-        return new LineAnalyzer(mutantFactor);
+    public LineAnalyzer createLineAnalyzer(final int mutantFactor, final int matrixDim) {
+        return new LineAnalyzer(mutantFactor, matrixDim);
     }
 
     public SlashDirectionAnalyzer createSlashDirectionAnalyzer(final int mutantFactor, final int matrixDim) {

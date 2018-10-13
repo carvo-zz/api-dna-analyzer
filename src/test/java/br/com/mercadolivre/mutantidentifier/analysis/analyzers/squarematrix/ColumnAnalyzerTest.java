@@ -1,4 +1,4 @@
-package br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences;
+package br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix;
 
 import org.junit.Test;
 
@@ -23,6 +23,25 @@ public class ColumnAnalyzerTest {
         CommonExecutorForTest.commonExecution(dna, analyzer);
 
         assertEquals(2, analyzer.getCountMutantSequence());
+    }
+
+    @Test
+    public void shouldFindZeroSequences() {
+        final String[] dna = {
+                "CACATAAA",
+                "TTCGGGAT",
+                "CACATATC",
+                "CAAATGAG",
+                "ATTTGAAA",
+                "AAGTTCAT",
+                "TTGTGTTC",
+                "AGAAGGCG"
+        };
+
+        SequenceAnalyzer analyzer = new ColumnAnalyzer(4, dna.length);
+        CommonExecutorForTest.commonExecution(dna, analyzer);
+
+        assertEquals(0, analyzer.getCountMutantSequence());
     }
 
 

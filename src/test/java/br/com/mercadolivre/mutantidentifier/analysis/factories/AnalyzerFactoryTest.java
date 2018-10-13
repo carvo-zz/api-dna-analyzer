@@ -1,9 +1,9 @@
 package br.com.mercadolivre.mutantidentifier.analysis.factories;
 
-import br.com.mercadolivre.mutantidentifier.analysis.analyzers.LineAnalyzer;
-import br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences.BackslashDirectionAnalyzer;
-import br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences.ColumnAnalyzer;
-import br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences.SlashDirectionAnalyzer;
+import br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix.BackslashDirectionAnalyzer;
+import br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix.ColumnAnalyzer;
+import br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix.LineAnalyzer;
+import br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix.SlashDirectionAnalyzer;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -15,7 +15,7 @@ public class AnalyzerFactoryTest {
     @Test
     public void shouldCreateLineAnalyzer() {
         final LineAnalyzer lineAnalyzer = new AnalyzerFactory()
-                .createLineAnalyzer(MUTANT_FACTOR);
+                .createLineAnalyzer(MUTANT_FACTOR, 4);
         assertNotNull(lineAnalyzer);
     }
 

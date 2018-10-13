@@ -1,4 +1,4 @@
-package br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences;
+package br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix;
 
 public class ColumnAnalyzer extends SequenceAnalyzer {
 

@@ -1,4 +1,4 @@
-package br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences;
+package br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix;
 
 import br.com.mercadolivre.mutantidentifier.analysis.analyzers.MutantSequenceCountable;
 

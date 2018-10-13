@@ -1,10 +1,10 @@
-package br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences;
+package br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix;
 
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class BackslashDirectionAnalyzerTest {
+public class SlashDirectionAnalyzerTest {
 
     @Test
     public void shouldFindOneSequence() {
@@ -15,11 +15,11 @@ public class BackslashDirectionAnalyzerTest {
                 "AGTAGGAT",
                 "CTCATAAT",
                 "CAAGTTTC",
-                "TAGGCTTC",
+                "TAGGCCTC",
                 "AGAATCTT"
         };
 
-        final BackslashDirectionAnalyzer analyzer = new BackslashDirectionAnalyzer(4, dna.length);
+        final SlashDirectionAnalyzer analyzer = new SlashDirectionAnalyzer(4, dna.length);
         CommonExecutorForTest.commonExecution(dna, analyzer);
 
         assertEquals(1, analyzer.getCountMutantSequence());
@@ -28,17 +28,17 @@ public class BackslashDirectionAnalyzerTest {
     @Test
     public void shouldFindTwoSequencesInSameOblique() {
         final String[] dna = {
-                "TCGTATAA",
-                "CTGTCCTA",
-                "TTTTGTCT",
-                "AGTTGGAT",
+                "ACGTATAA",
+                "CCGTCCAA",
+                "TTATGACT",
+                "AGTAAGAT",
                 "CTCATAAT",
                 "CAAGTTTC",
-                "TAGGCTTC",
+                "TAGGCCTC",
                 "AGAATCTT"
         };
 
-        final BackslashDirectionAnalyzer analyzer = new BackslashDirectionAnalyzer(4, dna.length);
+        final SlashDirectionAnalyzer analyzer = new SlashDirectionAnalyzer(4, dna.length);
         CommonExecutorForTest.commonExecution(dna, analyzer);
 
         assertEquals(2, analyzer.getCountMutantSequence());

@@ -1,4 +1,4 @@
-package br.com.mercadolivre.mutantidentifier.analysis.analyzers.sequences;
+package br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix;
 
 /**
  * Sequence analysis of obliques in <strong>slash (&#8601; or &#8599;)</strong> direction
