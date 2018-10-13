@@ -24,10 +24,10 @@ public class DnaServicePerformanceTest {
 
     @Test
     public void isMutant() {
+        final long millisDados = System.currentTimeMillis();
         final int size = 40000;
         final String[] dna = new String[size];
 
-        final long currentMillis = System.currentTimeMillis();
         IntStream.rangeClosed(1, size).forEach(l -> {
 
             final StringBuilder sb = new StringBuilder(size);
@@ -43,14 +43,16 @@ public class DnaServicePerformanceTest {
             dna[l - 1] = line;
 
             if (l % 10000 == 0) {
-                System.out.println(l + " linhas ciradas em " + (System.currentTimeMillis() - currentMillis) + "ms");
+                System.out.println(l + " linhas ciradas em " + (System.currentTimeMillis() - millisDados) + "ms");
             }
 
         });
 
-        System.out.println("Terminou em " + (System.currentTimeMillis() - currentMillis)/1000 + "s");
+        System.out.println("Criou a massa em " + (System.currentTimeMillis() - millisDados)/1000 + "s");
 
+        final long millis = System.currentTimeMillis();
         final boolean isMutant = dnaService.isMutant(dna);
+        System.out.println("Analisou em " + (System.currentTimeMillis() - millis) + "ms");
 
         assertTrue(isMutant);
     }
