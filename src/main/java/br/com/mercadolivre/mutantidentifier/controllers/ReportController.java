@@ -14,7 +14,7 @@ public class ReportController {
     @Autowired
     private ReportService reportService;
 
-    @GetMapping(UrlMapping.STATUS)
+    @GetMapping(UrlMapping.STATS)
     public ResponseEntity<Stats> getStats() {
         final Stats stats = reportService.getStats();
         return ResponseEntity.ok().body(stats);
