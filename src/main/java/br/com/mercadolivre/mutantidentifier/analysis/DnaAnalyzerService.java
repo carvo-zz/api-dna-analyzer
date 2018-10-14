@@ -5,22 +5,30 @@ import br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix.Colu
 import br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix.LineAnalyzer;
 import br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix.SlashDirectionAnalyzer;
 import br.com.mercadolivre.mutantidentifier.analysis.factories.AnalyzerFactory;
+import br.com.mercadolivre.mutantidentifier.analysis.helpers.HashHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
-public class DnaService {
+import java.util.stream.IntStream;
 
-    private static final Logger LOG = LoggerFactory.getLogger(DnaService.class);
+@Service
+public class DnaAnalyzerService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(DnaAnalyzerService.class);
+
     private static final int MUTANT_FACTOR = 4;
+    private static final int LINES_FOR_HASH = 1000;
 
     @Autowired
     private AnalyzerFactory analyzerFactory;
-    private int countFound = 0;
 
-    public DnaService() { }
+    @Autowired
+    private DnaDatastore dnaDatastore;
+
+    public DnaAnalyzerService() {
+    }
 
     public boolean isMutant(final String[] dna) {
         final long startedAt = System.currentTimeMillis();
@@ -33,10 +41,13 @@ public class DnaService {
         final SlashDirectionAnalyzer slashAnalyzer = analyzerFactory.createSlashDirectionAnalyzer(MUTANT_FACTOR, dim);
         final BackslashDirectionAnalyzer backslashAnalyzer = analyzerFactory.createBackslashDirectionAnalyzer(MUTANT_FACTOR, dim);
 
+        final HashHolder hashHolder = new HashHolder(dim);
+
         boolean isMutant = Boolean.FALSE;
         int lineIdx = 0;
         while (!isMutant && lineIdx < dim) {
             final String line = dna[lineIdx];
+            hashHolder.computeLine(line);
 
             int columnIdx = 0;
             while (!isMutant && columnIdx < dim) {
@@ -66,6 +77,13 @@ public class DnaService {
 
             lineIdx++;
         }
+
+        //TODO async
+        if (lineIdx != dim - 1) {
+            IntStream.range(lineIdx, dim).forEach(i -> hashHolder.computeLine(dna[i]));
+        }
+
+        dnaDatastore.computeDna(isMutant, hashHolder.getHash());
 
         LOG.info("Mutant squarematrix found: " +
                         "\n\t {} in lines, \n\t {} in columns, \n\t {} in slash directs, \n\t {} in backslash directs",

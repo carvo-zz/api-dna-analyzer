@@ -1,5 +1,6 @@
-package br.com.mercadolivre.mutantidentifier;
+package br.com.mercadolivre.mutantidentifier.configs;
 
+import br.com.mercadolivre.mutantidentifier.App;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 

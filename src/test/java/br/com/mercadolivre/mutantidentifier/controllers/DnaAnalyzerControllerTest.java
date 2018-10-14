@@ -1,7 +1,7 @@
 package br.com.mercadolivre.mutantidentifier.controllers;
 
 import br.com.mercadolivre.mutantidentifier.UrlMapping;
-import br.com.mercadolivre.mutantidentifier.analysis.DnaService;
+import br.com.mercadolivre.mutantidentifier.analysis.DnaAnalyzerService;
 import br.com.mercadolivre.mutantidentifier.analysis.validators.DnaStructureValidator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,7 +30,7 @@ public class DnaAnalyzerControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private DnaService service;
+    private DnaAnalyzerService service;
 
     @MockBean
     private DnaStructureValidator validator;

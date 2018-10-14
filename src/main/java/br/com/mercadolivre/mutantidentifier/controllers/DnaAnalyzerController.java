@@ -1,7 +1,7 @@
 package br.com.mercadolivre.mutantidentifier.controllers;
 
 import br.com.mercadolivre.mutantidentifier.UrlMapping;
-import br.com.mercadolivre.mutantidentifier.analysis.DnaService;
+import br.com.mercadolivre.mutantidentifier.analysis.DnaAnalyzerService;
 import br.com.mercadolivre.mutantidentifier.analysis.validators.DnaStructureValidator;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -19,7 +19,7 @@ import java.util.Optional;
 public class DnaAnalyzerController {
 
     @Autowired
-    private DnaService dnaService;
+    private DnaAnalyzerService dnaService;
 
     @Autowired
     private DnaStructureValidator structureValidator;

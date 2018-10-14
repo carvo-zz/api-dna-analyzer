@@ -1,6 +1,6 @@
 package br.com.mercadolivre.mutantidentifier.integratedtest.analysis;
 
-import br.com.mercadolivre.mutantidentifier.analysis.DnaService;
+import br.com.mercadolivre.mutantidentifier.analysis.DnaAnalyzerService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +14,13 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DnaServicePerformanceTest {
+public class DnaAnalyzerServicePerformanceTest {
 
     private final Random random = new Random();
     private final String wrongGenes = "BDEFHIJKL";
 
     @Autowired
-    private DnaService dnaService;
+    private DnaAnalyzerService dnaService;
 
     @Test
     public void isMutant() {

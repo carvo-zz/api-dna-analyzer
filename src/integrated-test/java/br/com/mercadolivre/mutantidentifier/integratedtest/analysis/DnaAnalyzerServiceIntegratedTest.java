@@ -1,6 +1,6 @@
 package br.com.mercadolivre.mutantidentifier.integratedtest.analysis;
 
-import br.com.mercadolivre.mutantidentifier.analysis.DnaService;
+import br.com.mercadolivre.mutantidentifier.analysis.DnaAnalyzerService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +11,10 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DnaServiceIntegratedTest {
+public class DnaAnalyzerServiceIntegratedTest {
 
     @Autowired
-    private DnaService dnaService;
+    private DnaAnalyzerService dnaService;
 
     @Test
     public void isMutantOnlyInVertical() {

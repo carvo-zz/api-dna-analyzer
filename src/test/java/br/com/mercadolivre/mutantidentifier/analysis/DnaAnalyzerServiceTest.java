@@ -17,12 +17,12 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class DnaServiceTest {
+public class DnaAnalyzerServiceTest {
 
     private static final int MUTANT_FACTOR = 4;
 
     @InjectMocks
-    DnaService dnaService;
+    DnaAnalyzerService dnaService;
 
     @Mock
     AnalyzerFactory factory;
