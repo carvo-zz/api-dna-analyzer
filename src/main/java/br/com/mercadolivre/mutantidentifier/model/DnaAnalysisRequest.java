@@ -1,4 +1,4 @@
-package br.com.mercadolivre.mutantidentifier.controllers;
+package br.com.mercadolivre.mutantidentifier.model;
 
 public class DnaAnalysisRequest {
     private String[] dna;

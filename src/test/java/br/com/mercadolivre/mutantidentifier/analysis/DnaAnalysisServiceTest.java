@@ -5,6 +5,7 @@ import br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix.Colu
 import br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix.LineAnalyzer;
 import br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix.SlashDirectionAnalyzer;
 import br.com.mercadolivre.mutantidentifier.analysis.factories.AnalyzerFactory;
+import br.com.mercadolivre.mutantidentifier.reports.ReportService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -12,21 +13,20 @@ import org.mockito.Mock;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
-import org.springframework.jmx.export.annotation.ManagedOperation;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class DnaAnalyzerServiceTest {
+public class DnaAnalysisServiceTest {
 
     private static final int MUTANT_FACTOR = 4;
 
     @InjectMocks
-    DnaAnalyzerService dnaService;
+    DnaAnalysisService dnaService;
 
     @Mock
-    DnaDatastore datastore;
+    ReportService reportService;
 
     @Mock
     AnalyzerFactory factory;

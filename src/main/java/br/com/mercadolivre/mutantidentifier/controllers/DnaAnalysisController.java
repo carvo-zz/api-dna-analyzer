@@ -1,8 +1,9 @@
 package br.com.mercadolivre.mutantidentifier.controllers;
 
 import br.com.mercadolivre.mutantidentifier.UrlMapping;
-import br.com.mercadolivre.mutantidentifier.analysis.DnaAnalyzerService;
+import br.com.mercadolivre.mutantidentifier.analysis.DnaAnalysisService;
 import br.com.mercadolivre.mutantidentifier.analysis.validators.DnaStructureValidator;
+import br.com.mercadolivre.mutantidentifier.model.DnaAnalysisRequest;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -16,15 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
-public class DnaAnalyzerController {
+public class DnaAnalysisController {
 
     @Autowired
-    private DnaAnalyzerService dnaService;
+    private DnaAnalysisService dnaService;
 
     @Autowired
     private DnaStructureValidator structureValidator;
 
-    @ApiOperation(value = "${DnaAnalyzerController.postDna.desc}", notes = "${DnaAnalyzerController.postDna.notes}")
+    @ApiOperation(value = "${DnaAnalysisController.postDna.desc}", notes = "${DnaAnalysisController.postDna.notes}")
     @ApiResponses({
             @ApiResponse(code = 200, message = "OK<br>Is a mutant"),
             @ApiResponse(code = 400, response = String.class, message = "Bad Request" +

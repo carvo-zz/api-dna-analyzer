@@ -1,7 +1,8 @@
 package br.com.mercadolivre.mutantidentifier.integratedtest.analysis;
 
-import br.com.mercadolivre.mutantidentifier.analysis.DnaAnalyzerService;
-import br.com.mercadolivre.mutantidentifier.analysis.DnaDatastore;
+import br.com.mercadolivre.mutantidentifier.analysis.DnaAnalysisService;
+import br.com.mercadolivre.mutantidentifier.reports.ReportService;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,18 +15,19 @@ import java.util.stream.IntStream;
 
 import static org.junit.Assert.*;
 
+@Ignore
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DnaAnalyzerServicePerformanceTest {
+public class DnaAnalysisServicePerformanceTest {
 
     private final Random random = new Random();
     private final String wrongGenes = "BDEFHIJKL";
 
     @Autowired
-    private DnaAnalyzerService dnaService;
+    private DnaAnalysisService dnaService;
 
     @MockBean
-    private DnaDatastore datastore;
+    private ReportService reportService;
 
     @Test
     public void isMutant() {

@@ -1,8 +1,9 @@
 package br.com.mercadolivre.mutantidentifier.controllers;
 
 import br.com.mercadolivre.mutantidentifier.UrlMapping;
-import br.com.mercadolivre.mutantidentifier.analysis.DnaAnalyzerService;
+import br.com.mercadolivre.mutantidentifier.analysis.DnaAnalysisService;
 import br.com.mercadolivre.mutantidentifier.analysis.validators.DnaStructureValidator;
+import br.com.mercadolivre.mutantidentifier.model.DnaAnalysisRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
@@ -23,14 +24,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(DnaAnalyzerController.class)
-public class DnaAnalyzerControllerTest {
+@WebMvcTest(DnaAnalysisController.class)
+public class DnaAnalysisControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private DnaAnalyzerService service;
+    private DnaAnalysisService service;
 
     @MockBean
     private DnaStructureValidator validator;

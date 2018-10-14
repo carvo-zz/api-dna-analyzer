@@ -6,6 +6,7 @@ import br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix.Line
 import br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix.SlashDirectionAnalyzer;
 import br.com.mercadolivre.mutantidentifier.analysis.factories.AnalyzerFactory;
 import br.com.mercadolivre.mutantidentifier.analysis.helpers.HashHolder;
+import br.com.mercadolivre.mutantidentifier.reports.ReportService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,20 +15,19 @@ import org.springframework.stereotype.Service;
 import java.util.stream.IntStream;
 
 @Service
-public class DnaAnalyzerService {
+public class DnaAnalysisService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(DnaAnalyzerService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(DnaAnalysisService.class);
 
     private static final int MUTANT_FACTOR = 4;
-    private static final int LINES_FOR_HASH = 1000;
 
     @Autowired
     private AnalyzerFactory analyzerFactory;
 
     @Autowired
-    private DnaDatastore dnaDatastore;
+    private ReportService reportService;
 
-    public DnaAnalyzerService() {
+    public DnaAnalysisService() {
     }
 
     public boolean isMutant(final String[] dna) {
@@ -80,7 +80,7 @@ public class DnaAnalyzerService {
 
         //TODO async
         IntStream.range(lineIdx, dim).forEach(i -> hashHolder.computeLine(dna[i]));
-        dnaDatastore.computeDna(isMutant, hashHolder.getHash());
+        reportService.computeDna(isMutant, hashHolder.getHash());
         //------
 
         LOG.info("Mutant squarematrix found: " +

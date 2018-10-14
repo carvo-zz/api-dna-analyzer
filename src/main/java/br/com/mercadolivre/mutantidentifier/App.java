@@ -1,6 +1,5 @@
 package br.com.mercadolivre.mutantidentifier;
 
-import br.com.mercadolivre.mutantidentifier.analysis.DnaAnalyzerService;
 import com.google.cloud.datastore.Datastore;
 import com.google.cloud.datastore.DatastoreOptions;
 import org.slf4j.Logger;

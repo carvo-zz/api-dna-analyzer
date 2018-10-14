@@ -5,5 +5,6 @@ public final class UrlMapping {
     public static final String ROOT = "/";
 
     public static final String POST_DNA = "/mutant";
+    public static final String STATUS = "/stats";
 
 }
