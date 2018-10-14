@@ -26,15 +26,15 @@ public class DnaDatastore {
 
 //    @Async
     public void computeDna(final boolean isMutant, final String hash) {
-        final QueryResults<?> a = selectAnalyzedDna(hash);
-        if (a.hasNext()) {
+        final QueryResults<?> results = selectAnalyzedDna(hash);
+
+        if (!results.hasNext()) {
             persistDna(isMutant, hash);
             summarizeDna(isMutant);
         }
     }
 
     private QueryResults<?> selectAnalyzedDna(String hash) {
-        LOG.info("#selectAnalyzedDna()");
         final Query<?> select = Query.newEntityQueryBuilder()
                 .setKind("AnalyzedDna")
                 .setFilter(StructuredQuery.PropertyFilter.eq("hash", hash))
@@ -44,7 +44,6 @@ public class DnaDatastore {
     }
 
     private void persistDna(boolean isMutant, String hash) {
-        LOG.info("persistDna");
         final Key key = datastore.allocateId(analyzedDnaFactory.newKey());
         final Entity analysis = Entity.newBuilder(key)
                 .set("createdAt", Timestamp.now())
@@ -56,25 +55,25 @@ public class DnaDatastore {
     }
 
     private void summarizeDna(boolean isMutant) {
-        LOG.info("#summarizeDna()");
-        final Query<ProjectionEntity> query = Query.newProjectionEntityQueryBuilder()
+        final String myIdValue = "uniqueDoc";
+        final Query<Entity> query = Query.newEntityQueryBuilder()
                 .setKind("AnalyzedDnaSummary")
-                .setProjection("total", "countMutant", "countNotMutant")
+                .setFilter(StructuredQuery.PropertyFilter.eq("myId", myIdValue))
                 .build();
 
-        final QueryResults<ProjectionEntity> results = datastore.run(query);
+        final QueryResults<Entity> results = datastore.run(query);
         if (results.hasNext()) {
-            final ProjectionEntity next = results.next();
+            LOG.info("hasNext Summary..");
+            final Entity next = results.next();
 
-            long total = next.getLong("total") + 1;
             long countMutant = next.getLong("countMutant") + (isMutant ? 1 : 0);
             long countNotMutant = next.getLong("countNotMutant") + (!isMutant ? 1 : 0);
 
             final Entity summary = Entity.newBuilder(next.getKey())
-                    .set("total", total)
                     .set("countMutant", countMutant)
                     .set("countNotMutant", countNotMutant)
                     .set("lastUpdate", Timestamp.now())
+                    .set("myId", myIdValue)
                     .build();
 
             datastore.put(summary);

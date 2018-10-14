@@ -79,11 +79,9 @@ public class DnaAnalyzerService {
         }
 
         //TODO async
-        if (lineIdx != dim - 1) {
-            IntStream.range(lineIdx, dim).forEach(i -> hashHolder.computeLine(dna[i]));
-        }
-
+        IntStream.range(lineIdx, dim).forEach(i -> hashHolder.computeLine(dna[i]));
         dnaDatastore.computeDna(isMutant, hashHolder.getHash());
+        //------
 
         LOG.info("Mutant squarematrix found: " +
                         "\n\t {} in lines, \n\t {} in columns, \n\t {} in slash directs, \n\t {} in backslash directs",

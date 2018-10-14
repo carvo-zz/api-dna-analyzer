@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
+import org.springframework.jmx.export.annotation.ManagedOperation;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -23,6 +24,9 @@ public class DnaAnalyzerServiceTest {
 
     @InjectMocks
     DnaAnalyzerService dnaService;
+
+    @Mock
+    DnaDatastore datastore;
 
     @Mock
     AnalyzerFactory factory;

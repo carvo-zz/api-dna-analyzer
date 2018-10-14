@@ -1,10 +1,12 @@
 package br.com.mercadolivre.mutantidentifier.integratedtest.analysis;
 
 import br.com.mercadolivre.mutantidentifier.analysis.DnaAnalyzerService;
+import br.com.mercadolivre.mutantidentifier.analysis.DnaDatastore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.*;
@@ -15,6 +17,9 @@ public class DnaAnalyzerServiceIntegratedTest {
 
     @Autowired
     private DnaAnalyzerService dnaService;
+
+    @MockBean
+    private DnaDatastore datastore;
 
     @Test
     public void isMutantOnlyInVertical() {
@@ -38,10 +43,10 @@ public class DnaAnalyzerServiceIntegratedTest {
     public void isMutantOnlyInHorizontal() {
         final String[] dna = {
                 "AAAATCGA",
+                "CCCCTAAT",
                 "CAGTGCTA",
                 "TTATGTCT",
                 "AGAAGGAT",
-                "CTCCTAAT",
                 "AAGGTTCC",
                 "AAGGCTCC",
                 "GGAATTTT"

@@ -12,7 +12,7 @@ public class HashHolder {
     private final int matrixDim;
     private int computedLines = 0;
     private int totalComputedLines = 0;
-    
+
     private String hash = "";
     private StringBuilder lines;
 
@@ -24,11 +24,11 @@ public class HashHolder {
     public void computeLine(final String line) {
         ++computedLines;
         ++totalComputedLines;
+
+        lines.append(line);
         if (shouldGenerateHash()) {
             final String toHash = lines.toString() + hash;
             this.hash = DigestUtils.sha256Hex(toHash);
-        } else {
-            lines.append(line);
         }
     }
 
