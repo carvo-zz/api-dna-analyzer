@@ -22,4 +22,4 @@ Access
 after running. **Important: if you change the port use the one you choose.**
 
 ### GoogleCloud
-Access
+Access [http://api-dna-analyzer.appspot.com/swagger-ui.html](http://api-dna-analyzer.appspot.com/swagger-ui.html)
