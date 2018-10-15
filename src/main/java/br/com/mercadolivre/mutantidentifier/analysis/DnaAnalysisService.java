@@ -5,6 +5,7 @@ import br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix.Colu
 import br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix.LineAnalyzer;
 import br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix.SlashDirectionAnalyzer;
 import br.com.mercadolivre.mutantidentifier.analysis.factories.AnalyzerFactory;
+import br.com.mercadolivre.mutantidentifier.analysis.factories.HashHolderFactory;
 import br.com.mercadolivre.mutantidentifier.analysis.helpers.HashHolder;
 import br.com.mercadolivre.mutantidentifier.reports.ReportService;
 import org.slf4j.Logger;
@@ -19,10 +20,14 @@ public class DnaAnalysisService {
 
     private static final Logger LOG = LoggerFactory.getLogger(DnaAnalysisService.class);
 
-    private static final int MUTANT_FACTOR = 4;
+    public static final int BUFFER_SIZE = 1000;
+    public static final int MUTANT_FACTOR = 4;
 
     @Autowired
     private AnalyzerFactory analyzerFactory;
+
+    @Autowired
+    private HashHolderFactory hashHolderFactory;
 
     @Autowired
     private ReportService reportService;
@@ -41,7 +46,7 @@ public class DnaAnalysisService {
         final SlashDirectionAnalyzer slashAnalyzer = analyzerFactory.createSlashDirectionAnalyzer(MUTANT_FACTOR, dim);
         final BackslashDirectionAnalyzer backslashAnalyzer = analyzerFactory.createBackslashDirectionAnalyzer(MUTANT_FACTOR, dim);
 
-        final HashHolder hashHolder = new HashHolder(dim);
+        final HashHolder hashHolder = hashHolderFactory.createHashHolder(dim, BUFFER_SIZE);
 
         boolean isMutant = Boolean.FALSE;
         int lineIdx = 0;
@@ -83,7 +88,7 @@ public class DnaAnalysisService {
         reportService.computeDna(isMutant, hashHolder.getHash());
         //------
 
-        LOG.info("Mutant squarematrix found: " +
+        LOG.info("Mutant sequences found: " +
                         "\n\t {} in lines, \n\t {} in columns, \n\t {} in slash directs, \n\t {} in backslash directs",
                 lineAnalyzer.getCountMutantSequence(), colAnalyzer.getCountMutantSequence(),
                 slashAnalyzer.getCountMutantSequence(), backslashAnalyzer.getCountMutantSequence());

@@ -5,6 +5,8 @@ import br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix.Colu
 import br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix.LineAnalyzer;
 import br.com.mercadolivre.mutantidentifier.analysis.analyzers.squarematrix.SlashDirectionAnalyzer;
 import br.com.mercadolivre.mutantidentifier.analysis.factories.AnalyzerFactory;
+import br.com.mercadolivre.mutantidentifier.analysis.factories.HashHolderFactory;
+import br.com.mercadolivre.mutantidentifier.analysis.helpers.HashHolder;
 import br.com.mercadolivre.mutantidentifier.reports.ReportService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,35 +22,41 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class DnaAnalysisServiceTest {
 
-    private static final int MUTANT_FACTOR = 4;
-
     @InjectMocks
-    DnaAnalysisService dnaService;
+    private DnaAnalysisService dnaService;
 
     @Mock
-    ReportService reportService;
+    private ReportService reportService;
 
     @Mock
-    AnalyzerFactory factory;
+    private AnalyzerFactory factory;
 
     @Mock
-    LineAnalyzer lineAnalyzer;
+    private LineAnalyzer lineAnalyzer;
 
     @Mock
-    ColumnAnalyzer colAnalyzer;
+    private ColumnAnalyzer colAnalyzer;
 
     @Mock
-    SlashDirectionAnalyzer slashAnalyzer;
+    private SlashDirectionAnalyzer slashAnalyzer;
 
     @Mock
-    BackslashDirectionAnalyzer backslashAnalyzer;
+    private BackslashDirectionAnalyzer backslashAnalyzer;
+
+    @Mock
+    private HashHolderFactory hashHolderFactory;
+
+    @Mock
+    private HashHolder hashHolder;
 
     @Test
     public void notIsMutant() {
+        final String hash = "abc";
         final String[] dna = { "AABB", "CCBB", "BBTT", "ABCD" };
         final int matrixDim = dna.length;
 
         initRequiredMocks(matrixDim);
+        when(hashHolder.getHash()).thenReturn(hash);
 
         final boolean isMutant = dnaService.isMutant(dna);
 
@@ -57,14 +65,18 @@ public class DnaAnalysisServiceTest {
         verify(colAnalyzer, times(matrixDim * matrixDim)).computeGene(anyInt(), anyInt(), anyChar());
         verify(slashAnalyzer, times(matrixDim * matrixDim)).computeGene(anyInt(), anyInt(), anyChar());
         verify(backslashAnalyzer, times(matrixDim * matrixDim)).computeGene(anyInt(), anyInt(), anyChar());
+
+        verify(reportService, times(1)).computeDna(Boolean.FALSE, hash);
     }
 
     @Test
     public void isMutantInLinePlusColumn() {
+        final String hash = "abc";
         final String[] dna = { "AAAA", "ATTG", "AGCT", "ATTG" };
         final int matrixDim = dna.length;
 
         initRequiredMocks(matrixDim);
+        when(hashHolder.getHash()).thenReturn(hash);
         when(lineAnalyzer.getCountMutantSequence()).thenAnswer(new Answer() {
             private int count = 0;
             private final int numAnalyzers = 4;
@@ -97,13 +109,17 @@ public class DnaAnalysisServiceTest {
         verify(colAnalyzer, times(14)).computeGene(anyInt(), anyInt(), anyChar());
         verify(slashAnalyzer, times(13)).computeGene(anyInt(), anyInt(), anyChar());
         verify(backslashAnalyzer, times(13)).computeGene(anyInt(), anyInt(), anyChar());
+
+        verify(reportService, times(1)).computeDna(Boolean.TRUE, hash);
     }
 
     private void initRequiredMocks(int matrixDim) {
-        when(factory.createLineAnalyzer(MUTANT_FACTOR, matrixDim)).thenReturn(lineAnalyzer);
-        when(factory.createColumnAnalyzer(MUTANT_FACTOR, matrixDim)).thenReturn(colAnalyzer);
-        when(factory.createSlashDirectionAnalyzer(MUTANT_FACTOR, matrixDim)).thenReturn(slashAnalyzer);
-        when(factory.createBackslashDirectionAnalyzer(MUTANT_FACTOR, matrixDim)).thenReturn(backslashAnalyzer);
+        when(factory.createLineAnalyzer(DnaAnalysisService.MUTANT_FACTOR, matrixDim)).thenReturn(lineAnalyzer);
+        when(factory.createColumnAnalyzer(DnaAnalysisService.MUTANT_FACTOR, matrixDim)).thenReturn(colAnalyzer);
+        when(factory.createSlashDirectionAnalyzer(DnaAnalysisService.MUTANT_FACTOR, matrixDim)).thenReturn(slashAnalyzer);
+        when(factory.createBackslashDirectionAnalyzer(DnaAnalysisService.MUTANT_FACTOR, matrixDim)).thenReturn(backslashAnalyzer);
+
+        when(hashHolderFactory.createHashHolder(matrixDim, DnaAnalysisService.BUFFER_SIZE)).thenReturn(hashHolder);
     }
 
 }
